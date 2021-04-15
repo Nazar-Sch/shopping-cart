@@ -1,14 +1,25 @@
 type TProduct = {
-  id: number
+  id: string
+  name: string
+  color: string
+  description: string
+  price: string
+  image: string
 }
 
 type TProductAction = {
   type: string
-  payload: [TProduct]
+  payload: Array<TProduct>
+}
+
+type TCartProduct = {
+  product: TProduct
+  amount: string
 }
 
 interface IProductsState {
-  products: any,
+  products: Array<TProduct>
+  cart: Array<TCartProduct>
 }
 
 type DispatchType = (args: TProductAction) => TProductAction

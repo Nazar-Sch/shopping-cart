@@ -1,4 +1,5 @@
 import { api } from '../api'
+import ProductsPage from '../pages/ProductsPage'
 import { GET_PRODUCTS_SUCCESS, GET_PRODUCTS_FAIL } from './actionTypes'
 
 export const fetchProducts = () => async (dispatch: any) => {

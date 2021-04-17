@@ -1,4 +1,5 @@
 import React from "react"
+import { useDispatch } from "react-redux"
 import {
   makeStyles,
   Card,
@@ -8,7 +9,9 @@ import {
   CardMedia,
   Button,
   Typography,
+  TextField,
 } from "@material-ui/core"
+import { changeAmountInCart, removeProductFromCart } from "../redux/actions"
 
 const useStyles = makeStyles({
   root: {
@@ -28,17 +31,18 @@ interface IProductCardProps {
   color: string
   price: string
   id: string
-  addToCart: (id: string) => void
+  amount: number
 }
-const ProductCard: React.FC<IProductCardProps> = ({
+const CartProducts: React.FC<IProductCardProps> = ({
   image,
   title,
   color,
   price,
   id,
-  addToCart,
+  amount,
 }) => {
   const classes = useStyles()
+  const dispatch = useDispatch()
 
   return (
     <Card className={classes.root}>
@@ -48,26 +52,40 @@ const ProductCard: React.FC<IProductCardProps> = ({
           <Typography gutterBottom variant="h5" component="h2">
             {title}
           </Typography>
-          <Typography variant="h6" component="p">
+          <Typography variant="body2" color="textSecondary" component="p">
             $ {price}
           </Typography>
-          <Typography variant="body1" component="p">
+          <Typography variant="body2" color="textSecondary" component="p">
             Color: {color}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
+        <TextField
+          id="outlined-number"
+          label="Amount"
+          type="number"
+          value={amount}
+          onChange={(e) => dispatch(changeAmountInCart(id, (parseFloat(e.target.value))))}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          InputProps={{
+            inputProps: { min: 1 },
+          }}
+          variant="outlined"
+        />        
         <Button
           size="small"
           variant="contained"
           color="primary"
-          onClick={() => addToCart(id)}
+          onClick={() => dispatch(removeProductFromCart(id))}
         >
-          Add to cart
+          Remove
         </Button>
       </CardActions>
     </Card>
   )
 }
 
-export default ProductCard
+export default CartProducts

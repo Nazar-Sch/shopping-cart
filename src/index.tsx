@@ -1,6 +1,5 @@
-import * as React from "react"
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware, Store } from "redux"
+import { createStore, applyMiddleware, Store, Reducer } from "redux"
 import { Provider } from "react-redux"
 import thunk from "redux-thunk"
 import './index.css';
@@ -8,9 +7,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import reducer from './redux/reducer'
 
-const store: Store<IProductsState, TProductAction> & {
+export const store: Store<TState, TAction> & {
   dispatch: DispatchType
-}  = createStore(reducer, applyMiddleware(thunk))
+}  = createStore(reducer as Reducer<TState, TAction>, applyMiddleware(thunk))
 
 ReactDOM.render(
   <Provider store={store}>

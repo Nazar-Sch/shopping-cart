@@ -1,6 +1,10 @@
 import React from "react"
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
-import TextField from "@material-ui/core/TextField"
+import { 
+  createStyles, 
+  makeStyles, 
+  Theme, 
+  TextField 
+} from "@material-ui/core"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -14,8 +18,8 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 interface ISearchInputProps {
-  value?: string
-  handleChangeValue: (e: any) => void
+  value: string
+  handleChangeValue: (value: string) => void
 }
 
 const SearchInput: React.FC<ISearchInputProps> = ({

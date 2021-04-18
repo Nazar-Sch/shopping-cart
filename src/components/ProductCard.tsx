@@ -2,7 +2,6 @@ import React from "react"
 import {
   makeStyles,
   Card,
-  CardActionArea,
   CardActions,
   CardContent,
   CardMedia,
@@ -42,22 +41,25 @@ const ProductCard: React.FC<IProductCardProps> = ({
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia className={classes.media} image={image} title={title} />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {title}
-          </Typography>
-          <Typography variant="h6" component="p">
-            $ {price}
-          </Typography>
-          <Typography variant="body1" component="p">
-            Color: {color}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+      <CardMedia
+        className={classes.media}
+        image={image}
+        title={`Image: ${title}`}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="h2">
+          {title}
+        </Typography>
+        <Typography variant="h6" component="p">
+          $ {price}
+        </Typography>
+        <Typography variant="body1" component="p">
+          Color: {color}
+        </Typography>
+      </CardContent>
       <CardActions>
         <Button
+          data-testid="button-add"
           size="small"
           variant="contained"
           color="primary"

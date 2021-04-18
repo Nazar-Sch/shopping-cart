@@ -3,7 +3,7 @@ import {
   createStyles, 
   makeStyles, 
   Theme, 
-  TextField 
+  Input
 } from "@material-ui/core"
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -30,10 +30,10 @@ const SearchInput: React.FC<ISearchInputProps> = ({
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
-      <TextField 
+      <Input 
         id="outlined-basic" 
-        label="Search" 
-        variant="outlined" 
+        data-testid="Search"
+        placeholder="Search"
         value={value}
         onChange={(e) => handleChangeValue(e.target.value)}
       />

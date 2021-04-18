@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import {
-  Container,
-  Grid,
-  Typography
-} from '@material-ui/core'
+import { Container, Grid, Typography } from "@material-ui/core"
 
 import { fetchedProducts } from "../redux/selectors"
 import { addProductToCart, fetchProducts } from "../redux/actions"
 import ProductCard from "../components/ProductCard"
 import SearchBar from "../components/SearchBar"
+import Loader from "../components/Loader"
 
 const ProductsPage = () => {
   const [searchValue, setSearchValue] = useState<string>("")
@@ -37,27 +34,33 @@ const ProductsPage = () => {
   return (
     <Container>
       <Typography variant="h4">Products</Typography>
-      <SearchBar
-        searchValue={searchValue}
-        colors={colors}
-        selectedColor={selectedColor}
-        handleChangeSearchValue={(value: string) => setSearchValue(value)}
-        handleChangeColorValue={(value: string) => setSelectedColor(value)}
-      />
-      <Grid container spacing={2}>
-        {filteredListProducts().map((item) => (
-          <Grid item xs={3} key={item.id}>
-            <ProductCard
-              title={item.name}
-              image={item.image}
-              price={item.price}
-              color={item.color}
-              id={item.id}
-              addToCart={(id: string) => dispatch(addProductToCart(id))}
-            />
+      {products.length !== 0 ? (
+        <>
+          <SearchBar
+            searchValue={searchValue}
+            colors={colors}
+            selectedColor={selectedColor}
+            handleChangeSearchValue={(value: string) => setSearchValue(value)}
+            handleChangeColorValue={(value: string) => setSelectedColor(value)}
+          />
+          <Grid container spacing={2}>
+            {filteredListProducts().map((item) => (
+              <Grid item xs={3} key={item.id}>
+                <ProductCard
+                  title={item.name}
+                  image={item.image}
+                  price={item.price}
+                  color={item.color}
+                  id={item.id}
+                  addToCart={(id: string) => dispatch(addProductToCart(id))}
+                />
+              </Grid>
+            ))}
           </Grid>
-        ))}
-      </Grid>
+        </>
+      ) : (
+        <Loader />
+      )}
     </Container>
   )
 }

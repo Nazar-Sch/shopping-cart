@@ -77,6 +77,7 @@ const CartProducts: React.FC<IProductCardProps> = ({
         />        
         <Button
           size="small"
+          data-testid="button-remove"
           variant="contained"
           color="primary"
           onClick={() => dispatch(removeProductFromCart(id))}

@@ -10,7 +10,7 @@ import { getCart, getTotal } from "../redux/selectors"
 import CartProducts from "../components/CartProducts"
 
 const CartPage = () => {
-  const cart = useSelector(getCart)
+  const cart: IProduct[] = useSelector(getCart)
   const total: number = useSelector(getTotal)
 
   return (
@@ -41,7 +41,7 @@ const CartPage = () => {
             </Grid>
           </>
         )
-        : <Typography variant="h5">My cart is empty :(</Typography>
+        : <Typography variant="h5">Cart is empty :(</Typography>
       }
     </Container>
   )

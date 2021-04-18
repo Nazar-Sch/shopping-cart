@@ -47,7 +47,7 @@ const NavBar: React.FC = () => {
           <Typography variant="h6">
             <Link className={classes.title} to="/cart">
               <Badge badgeContent={amount}>
-                <ShopingCart />
+                <ShopingCart data-testid='icon-svg'/>
               </Badge>
             </Link>
           </Typography>
